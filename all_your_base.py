@@ -12,6 +12,8 @@ def decimal_to_output_base(decimal, output_base):
         result.append(remainder)
         number = quotient
     result.reverse()
+    # check if decimal its equals to zero
+    result = [0] if not result else result
     return result
 
 def map_input_base_to_decimal(digit):
@@ -23,6 +25,8 @@ def input_base_to_decimal(input_base, digits):
     result = 0
     max_pow = len(digits) - 1
     for index, digit in enumerate(digits):
+        if digit < 0 or digit > input_base:
+            raise ValueError("all digits must satisfy 0 <= d < input base")
         value = map_input_base_to_decimal(digit)
         if value >= input_base:
             raise ValueError("all digits must satisfy 0 <= d < input base")
